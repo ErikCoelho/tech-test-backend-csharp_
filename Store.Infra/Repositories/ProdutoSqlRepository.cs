@@ -6,29 +6,39 @@ namespace Store.Infra.Repositories
 {
     public class ProdutoSqlRepository : IProdutoRepository
     {
+        private readonly SqlDbContext _context;
+
+        public ProdutoSqlRepository(SqlDbContext context)
+        {
+            _context = context;
+        }
+
         public void Create(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Add(produto);
+            _context.SaveChanges();
         }
 
         public void Delete(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Produto> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Produtos.ToList();
         }
 
         public Produto GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Produtos.FirstOrDefault(x => x.Id == id)!;
         }
 
         public void Update(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
         }
     }
 }
