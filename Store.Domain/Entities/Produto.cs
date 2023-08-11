@@ -22,5 +22,15 @@ namespace Store.Domain.Entities
         public int QuantidadeEstoque { get; private set; }
         public decimal ValorTotal { get; private set; }
         public DateTime DataCriacao { get; private set; }
+
+        public void ProdutoUpdate(string nome, decimal preco, int quantidadeEstoque)
+        {
+            Nome = nome;
+            Preco = preco;
+            QuantidadeEstoque = quantidadeEstoque;
+            ValorTotal = preco * quantidadeEstoque;
+
+            InvalidProductException.ThrowIfInvalid(nome, preco, quantidadeEstoque);
+        }
     }
 }
