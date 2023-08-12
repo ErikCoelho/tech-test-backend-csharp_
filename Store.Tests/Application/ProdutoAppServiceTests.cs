@@ -35,7 +35,6 @@ namespace Store.Tests.Application
 
             var result = appService.Create(produtoViewModel);
             Assert.IsTrue(result.Success);
-
         }
 
         [TestMethod]
@@ -52,7 +51,6 @@ namespace Store.Tests.Application
 
             var result = appService.Create(produtoViewModel);
             Assert.IsFalse(result.Success);
-
         }
     }
 }

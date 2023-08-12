@@ -1,6 +1,7 @@
 ﻿using Store.Infra.Contexts;
 using Store.Domain.Entities;
 using Store.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Store.Infra.Repositories
 {
@@ -27,7 +28,7 @@ namespace Store.Infra.Repositories
 
         public IEnumerable<Produto> GetAll()
         {
-            return _context.Produtos.ToList();
+            return _context.Produtos.AsNoTracking().ToList();
         }
 
         public Produto GetById(Guid id)

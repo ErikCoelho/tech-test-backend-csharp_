@@ -6,7 +6,7 @@ namespace Store.Infra.Repositories
 {
     public class ProdutoFileRepository : IProdutoRepository
     {
-        private readonly string _filePath = "";
+        private readonly string _filePath = "\"H:\\Database\\fileDb.txt\"";
 
         public IEnumerable<Produto> GetAll()
         {
