@@ -21,7 +21,7 @@ namespace Store.Infra.Repositories
 
         public Produto GetById(Guid id)
         {
-            return _produtoCollection.Find(p => p.Id == id).FirstOrDefault();
+            return _produtoCollection.Find(x => x.Id == id).FirstOrDefault();
         }
 
         public void Create(Produto produto)
@@ -31,13 +31,13 @@ namespace Store.Infra.Repositories
 
         public void Update(Produto produto)
         {
-            var filter = Builders<Produto>.Filter.Eq(p => p.Id, produto.Id);
+            var filter = Builders<Produto>.Filter.Eq(x => x.Id, produto.Id);
             _produtoCollection.ReplaceOne(filter, produto);
         }
 
         public void Delete(Produto produto)
         {
-            var filter = Builders<Produto>.Filter.Eq(p => p.Id, produto.Id);
+            var filter = Builders<Produto>.Filter.Eq(x => x.Id, produto.Id);
             _produtoCollection.DeleteOne(filter);
         }
     }

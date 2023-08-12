@@ -41,7 +41,7 @@ namespace Store.Infra.Repositories
         public void Update(Produto produto)
         {
             var produtos = GetAll().ToList();
-            int index = produtos.FindIndex(p => p.Id == produto.Id);
+            int index = produtos.FindIndex(x => x.Id == produto.Id);
             if (index != -1)
             {
                 produtos[index] = produto;
