@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Exceptions;
+using System.Text.Json.Serialization;
 
 namespace Store.Domain.Entities
 {
@@ -14,6 +15,17 @@ namespace Store.Domain.Entities
             ValorTotal = preco * quantidadeEstoque;
 
             InvalidProductException.ThrowIfInvalid(nome, preco, quantidadeEstoque);
+        }
+
+        [JsonConstructor]
+        public Produto(Guid id, string nome, decimal preco, int quantidadeEstoque, DateTime dataCriacao, decimal valorTotal)
+        {
+            Id = id;
+            Nome = nome;
+            Preco = preco;
+            QuantidadeEstoque = quantidadeEstoque;
+            DataCriacao = dataCriacao;
+            ValorTotal = valorTotal;
         }
 
         public Guid Id { get; private set; }
