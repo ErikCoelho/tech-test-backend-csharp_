@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Store.Api.Application;
 using Store.Domain.Repositories;
+using Store.Api.Application;
 using Store.Infra.Contexts;
 using Store.Infra.Repositories;
 using Store.Infra.Settings;
@@ -14,9 +14,9 @@ builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseInMemoryDatabase("Data
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(connectionString));
 
-builder.Services.AddTransient<ProdutoSqlRepository>();
-builder.Services.AddTransient<ProdutoNoSqlRepository>();
-builder.Services.AddTransient<ProdutoFileRepository>();
+builder.Services.AddTransient<IProdutoSqlRepository,ProdutoSqlRepository>();
+builder.Services.AddTransient<IProdutoNoSqlRepository, ProdutoNoSqlRepository>();
+builder.Services.AddTransient<IProdutoFileRepository, ProdutoFileRepository>();
 builder.Services.AddScoped<ProdutoAppService>();
 
 
@@ -33,8 +33,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-
 
 app.MapControllers();
 

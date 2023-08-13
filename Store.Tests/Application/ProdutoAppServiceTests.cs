@@ -10,15 +10,15 @@ namespace Store.Tests.Application
     [TestClass]
     public class ProdutoAppServiceTests
     {
-        private readonly IProdutoRepository _SqlRepository;
-        private readonly IProdutoRepository _NoSqlRepository;
-        private readonly IProdutoRepository _FileRepository;
+        private readonly IProdutoSqlRepository _SqlRepository;
+        private readonly IProdutoNoSqlRepository _NoSqlRepository;
+        private readonly IProdutoFileRepository _FileRepository;
 
         public ProdutoAppServiceTests()
         {
-            _SqlRepository = new FakeProdutoRepository();
-            _NoSqlRepository = new FakeProdutoRepository();
-            _FileRepository = new FakeProdutoRepository();
+            _SqlRepository = new FakeProdutoSqlRepository();
+            _NoSqlRepository = new FakeProdutoNoSqlRepository();
+            _FileRepository = new FakeProdutoFileRepository();
         }
 
         [TestMethod]

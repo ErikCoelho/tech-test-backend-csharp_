@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using Store.Domain.Entities;
-using Store.Domain.Model;
 using Store.Domain.Repositories;
 
 namespace Store.Infra.Repositories
 {
-    public class ProdutoFileRepository : IProdutoRepository
+    public class ProdutoFileRepository : IProdutoFileRepository
     {
         private readonly string _filePath = @"H:\Database\fileDb.txt";
 
@@ -16,7 +15,7 @@ namespace Store.Infra.Repositories
                 string jsonData = File.ReadAllText(_filePath);
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    return JsonConvert.DeserializeObject<List<Produto>>(jsonData);
+                    return JsonSerializer.Deserialize<List<Produto>>(jsonData);
                 }
             }
             return new List<Produto>();
@@ -55,7 +54,12 @@ namespace Store.Infra.Repositories
 
         public void SaveData(IEnumerable<Produto> produtos)
         {
-            string jsonData = JsonConvert.SerializeObject(produtos, Formatting.Indented);
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                WriteIndented = true 
+            };
+
+            string jsonData = JsonSerializer.Serialize(produtos, options);
             File.WriteAllText(_filePath, jsonData);
         }
     }

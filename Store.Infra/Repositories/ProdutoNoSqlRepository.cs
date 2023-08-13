@@ -5,7 +5,7 @@ using Store.Infra.Contexts;
 
 namespace Store.Infra.Repositories
 {
-    public class ProdutoNoSqlRepository : IProdutoRepository
+    public class ProdutoNoSqlRepository : IProdutoNoSqlRepository
     {
         private readonly IMongoCollection<Produto> _produtoCollection;
 

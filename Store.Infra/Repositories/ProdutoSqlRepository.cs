@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Store.Infra.Repositories
 {
-    public class ProdutoSqlRepository : IProdutoRepository
+    public class ProdutoSqlRepository : IProdutoSqlRepository
     {
         private readonly SqlDbContext _context;
 

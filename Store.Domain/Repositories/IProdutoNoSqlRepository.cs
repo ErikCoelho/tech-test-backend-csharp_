@@ -2,7 +2,7 @@
 
 namespace Store.Domain.Repositories
 {
-    public interface IProdutoRepository
+    public interface IProdutoNoSqlRepository
     {
         IEnumerable<Produto> GetAll();
         Produto GetById(Guid id);

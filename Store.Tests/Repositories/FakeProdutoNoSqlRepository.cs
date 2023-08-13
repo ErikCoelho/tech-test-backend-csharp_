@@ -3,16 +3,16 @@ using Store.Domain.Repositories;
 
 namespace Store.Tests.Repositories
 {
-    public class FakeProdutoRepository : IProdutoRepository
+    public class FakeProdutoNoSqlRepository : IProdutoNoSqlRepository
     {
         public void Create(Produto produto)
         {
-            
+
         }
 
         public void Delete(Produto produto)
         {
-            
+
         }
 
         public IEnumerable<Produto> GetAll()

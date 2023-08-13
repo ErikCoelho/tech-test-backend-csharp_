@@ -2,8 +2,6 @@
 using Store.Api.Application;
 using Store.Api.ViewModels;
 using Store.Domain.Entities;
-using Store.Domain.Model;
-using Store.Domain.Repositories;
 
 namespace Store.Api.Controllers
 {

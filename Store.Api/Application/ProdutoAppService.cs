@@ -1,21 +1,20 @@
 ﻿using Store.Api.ViewModels;
 using Store.Domain.Entities;
 using Store.Domain.Exceptions;
-using Store.Domain.Model;
-using Store.Infra.Repositories;
+using Store.Domain.Repositories;
 
 namespace Store.Api.Application
 {
     public class ProdutoAppService
     {
-        private readonly ProdutoSqlRepository _sqlProdutoRepository;
-        private readonly ProdutoNoSqlRepository _nosqlProdutoRepository;
-        private readonly ProdutoFileRepository _fileProdutoRepository;
+        private readonly IProdutoSqlRepository _sqlProdutoRepository;
+        private readonly IProdutoNoSqlRepository _nosqlProdutoRepository;
+        private readonly IProdutoFileRepository _fileProdutoRepository;
 
         public ProdutoAppService(
-            ProdutoSqlRepository sqlProdutoRepository,
-            ProdutoNoSqlRepository nosqlProdutoRepository,
-            ProdutoFileRepository fileProdutoRepository)
+            IProdutoSqlRepository sqlProdutoRepository,
+            IProdutoNoSqlRepository nosqlProdutoRepository,
+            IProdutoFileRepository fileProdutoRepository)
         {
             _sqlProdutoRepository = sqlProdutoRepository;
             _nosqlProdutoRepository = nosqlProdutoRepository;
@@ -45,11 +44,11 @@ namespace Store.Api.Application
             }
             catch (InvalidProductException ex)
             {
-                return new ResultViewModel(false, ex.Message, null);
+                return new ResultViewModel(false, ex.Message, string.Empty);
             }
             catch (Exception)
             {
-                return new ResultViewModel(false, "lq53 - Falha interna no servidor", null);
+                return new ResultViewModel(false, "lq53 - Falha interna no servidor", string.Empty);
             }
         }
 
@@ -59,7 +58,7 @@ namespace Store.Api.Application
 
             if (produto_ == null)
             {
-                return new ResultViewModel(false, "Produto não encontrado", null);
+                return new ResultViewModel(false, "Produto não encontrado", string.Empty);
             }
 
             try
@@ -72,11 +71,11 @@ namespace Store.Api.Application
             }
             catch (InvalidProductException ex)
             {
-                return new ResultViewModel(false, ex.Message, null);
+                return new ResultViewModel(false, ex.Message, string.Empty);
             }
             catch (Exception)
             {
-                return new ResultViewModel(false, "P8tw - Falha interna no servidor", null);
+                return new ResultViewModel(false, "P8tw - Falha interna no servidor", string.Empty);
             }
             
         }
@@ -87,7 +86,7 @@ namespace Store.Api.Application
 
             if (produto == null)
             {
-                return new ResultViewModel(false, "Produto não encontrado", null);
+                return new ResultViewModel(false, "Produto não encontrado", string.Empty);
             }
 
             try
@@ -98,7 +97,7 @@ namespace Store.Api.Application
             }
             catch (Exception)
             {
-                return new ResultViewModel(false, "8kdn - Falha interna no servidor", null);
+                return new ResultViewModel(false, "8kdn - Falha interna no servidor", string.Empty);
             }
         }
         private void CreateProdutoInAllRepositories(Produto produto)

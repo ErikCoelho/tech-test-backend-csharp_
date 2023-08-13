@@ -10,7 +10,7 @@ namespace Store.Tests.Entities
         [ExpectedException(typeof(InvalidProductException))]
         public void Should_return_exception_when_product_is_invalid()
         {
-            new Produto(null, -2, 3);
+            new Produto("shoes", -2, 3);
         }
 
         [TestMethod]
