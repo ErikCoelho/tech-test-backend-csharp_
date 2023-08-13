@@ -28,7 +28,7 @@ namespace Store.Infra.Repositories
 
         public IEnumerable<Produto> GetAll()
         {
-            return _context.Produtos.AsNoTracking().ToList();
+            return _context.Produtos.AsNoTracking();
         }
 
         public Produto GetById(Guid id)

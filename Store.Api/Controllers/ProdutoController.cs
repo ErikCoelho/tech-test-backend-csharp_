@@ -2,6 +2,7 @@
 using Store.Api.Application;
 using Store.Api.ViewModels;
 using Store.Domain.Entities;
+using Store.Domain.Model;
 using Store.Domain.Repositories;
 
 namespace Store.Api.Controllers
@@ -11,20 +12,20 @@ namespace Store.Api.Controllers
     {
         [HttpGet("api/produtos")]
         public IEnumerable<Produto> GetAll(
-            [FromServices] IProdutoRepository _repository)
+            [FromServices] ProdutoAppService service)
         {
-            return _repository.GetAll();
+            return service.GetAll();
         }
 
         [HttpGet("api/produtos/{id:Guid}")]
         public Produto GetById(
             [FromRoute] Guid id,
-            [FromServices] IProdutoRepository _repository)
+            [FromServices] ProdutoAppService service)
         {
-            return _repository.GetById(id);
+            return service.GetById(id);
         }
 
-        [HttpPost("v1/products")]
+        [HttpPost("api/produtos")]
         public ResultViewModel Create(
             [FromBody] ProdutoViewModel model,
             [FromServices] ProdutoAppService service)
@@ -32,7 +33,7 @@ namespace Store.Api.Controllers
             return service.Create(model);
         }
 
-        [HttpPut("v1/products/{id:Guid}")]
+        [HttpPut("api/produtos/{id:Guid}")]
         public ResultViewModel Edit(
             [FromRoute] Guid id,
             [FromBody] ProdutoViewModel model,
@@ -42,7 +43,7 @@ namespace Store.Api.Controllers
 
         }
 
-        [HttpDelete("v1/products/{id:Guid}")]
+        [HttpDelete("api/produtos/{id:Guid}")]
         public ResultViewModel Delete(
             [FromRoute] Guid id,
             [FromServices] ProdutoAppService service)

@@ -1,33 +1,37 @@
 ﻿using Newtonsoft.Json;
 using Store.Domain.Entities;
+using Store.Domain.Model;
 using Store.Domain.Repositories;
 
 namespace Store.Infra.Repositories
 {
     public class ProdutoFileRepository : IProdutoRepository
     {
-        private readonly string _filePath = "\"H:\\Database\\fileDb.txt\"";
+        private readonly string _filePath = @"H:\Database\fileDb.txt";
 
         public IEnumerable<Produto> GetAll()
         {
             if (File.Exists(_filePath))
             {
                 string jsonData = File.ReadAllText(_filePath);
-                return JsonConvert.DeserializeObject<List<Produto>>(jsonData);
+                if (!string.IsNullOrEmpty(jsonData))
+                {
+                    return JsonConvert.DeserializeObject<List<Produto>>(jsonData);
+                }
             }
             return new List<Produto>();
         }
 
         public Produto GetById(Guid id)
         {
-            var produtos = GetAll();
-            return produtos.FirstOrDefault(x => x.Id == id)!;
+            var produto = GetAll().FirstOrDefault(x => x.Id == id);
+            return produto;
         }
 
         public void Create(Produto produto)
         {
-            var produtos = GetAll();
-            produtos.Append(produto);
+            var produtos = GetAll().ToList(); 
+            produtos.Add(produto); 
             SaveData(produtos);
         }
 

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Store.Api.Application;
 using Store.Domain.Repositories;
 using Store.Infra.Contexts;
 using Store.Infra.Repositories;
@@ -13,9 +14,10 @@ builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseInMemoryDatabase("Data
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(connectionString));
 
-builder.Services.AddTransient<IProdutoRepository, ProdutoSqlRepository>();
-builder.Services.AddTransient<IProdutoRepository, ProdutoNoSqlRepository>();
-builder.Services.AddTransient<IProdutoRepository, ProdutoFileRepository>();
+builder.Services.AddTransient<ProdutoSqlRepository>();
+builder.Services.AddTransient<ProdutoNoSqlRepository>();
+builder.Services.AddTransient<ProdutoFileRepository>();
+builder.Services.AddScoped<ProdutoAppService>();
 
 
 builder.Services.AddControllers();

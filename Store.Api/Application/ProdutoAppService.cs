@@ -1,20 +1,21 @@
 ﻿using Store.Api.ViewModels;
 using Store.Domain.Entities;
 using Store.Domain.Exceptions;
-using Store.Domain.Repositories;
+using Store.Domain.Model;
+using Store.Infra.Repositories;
 
 namespace Store.Api.Application
 {
     public class ProdutoAppService
     {
-        private readonly IProdutoRepository _sqlProdutoRepository;
-        private readonly IProdutoRepository _nosqlProdutoRepository;
-        private readonly IProdutoRepository _fileProdutoRepository;
+        private readonly ProdutoSqlRepository _sqlProdutoRepository;
+        private readonly ProdutoNoSqlRepository _nosqlProdutoRepository;
+        private readonly ProdutoFileRepository _fileProdutoRepository;
 
         public ProdutoAppService(
-            IProdutoRepository sqlProdutoRepository,
-            IProdutoRepository nosqlProdutoRepository,
-            IProdutoRepository fileProdutoRepository)
+            ProdutoSqlRepository sqlProdutoRepository,
+            ProdutoNoSqlRepository nosqlProdutoRepository,
+            ProdutoFileRepository fileProdutoRepository)
         {
             _sqlProdutoRepository = sqlProdutoRepository;
             _nosqlProdutoRepository = nosqlProdutoRepository;
@@ -102,8 +103,8 @@ namespace Store.Api.Application
         }
         private void CreateProdutoInAllRepositories(Produto produto)
         {
-            _sqlProdutoRepository.Create(produto);
             _fileProdutoRepository.Create(produto);
+            _sqlProdutoRepository.Create(produto);
             _nosqlProdutoRepository.Create(produto);
         }
 
