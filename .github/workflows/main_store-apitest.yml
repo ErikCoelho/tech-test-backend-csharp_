@@ -11,9 +11,7 @@ on:
 
 env:
   ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-
-env:
-      APP_PATH: ./Store.Api
+  APP_PATH: ./Store.Api
     
 
 jobs:
