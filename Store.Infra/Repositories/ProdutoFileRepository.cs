@@ -15,7 +15,7 @@ namespace Store.Infra.Repositories
 
         public ProdutoFileRepository(IConfiguration configuration)
         {
-            _configuration = configuration.GetConnectionString("AzureStorageConnectionString")!;
+            _configuration = configuration["AzureStorageConnectionString"];
         }
 
         private BlobContainerClient GetBlobContainerClient()

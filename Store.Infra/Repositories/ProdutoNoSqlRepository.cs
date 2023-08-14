@@ -13,7 +13,7 @@ namespace Store.Infra.Repositories
 
         public ProdutoNoSqlRepository(IConfiguration configuration)
         {
-            var client = new MongoClient(configuration.GetConnectionString("MongoDbConnectionString"));
+            var client = new MongoClient(configuration["MongoDbConnectionString"]);
             var database = client.GetDatabase(_databaseName);
             _produtoCollection = database.GetCollection<Produto>(_collectionName);
         }
