@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+  env:
+    ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,11 +26,23 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
-
+      
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Install EF Tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: dotnet database update
+        run: dotnet ef database update --startup-project Store.Api/Store.Api.csproj -- --environment Production
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2

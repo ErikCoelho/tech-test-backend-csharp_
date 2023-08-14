@@ -1,17 +1,21 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 using Store.Domain.Entities;
 using Store.Domain.Repositories;
-using Store.Infra.Contexts;
 
 namespace Store.Infra.Repositories
 {
     public class ProdutoNoSqlRepository : IProdutoNoSqlRepository
     {
         private readonly IMongoCollection<Produto> _produtoCollection;
+        private readonly string _collectionName = "Collection1";
+        private readonly string _databaseName = "store";
 
-        public ProdutoNoSqlRepository(MongoDbContext dbContext)
+        public ProdutoNoSqlRepository(IConfiguration configuration)
         {
-            _produtoCollection = dbContext.Produtos;
+            var client = new MongoClient(configuration.GetConnectionString("MongoDbConnectionString"));
+            var database = client.GetDatabase(_databaseName);
+            _produtoCollection = database.GetCollection<Produto>(_collectionName);
         }
 
         public IEnumerable<Produto> GetAll()
