@@ -37,8 +37,12 @@ namespace Store.Infra.Repositories
         public void Delete(Produto produto)
         {
             var produtos = GetAll().ToList();
-            produtos.Remove(produto);
-            SaveData(produtos);
+            int index = produtos.FindIndex(x => x.Id == produto.Id);
+            if (index != -1)
+            {
+                produtos.RemoveAt(index);
+                SaveData(produtos);
+            }
         }
 
         public void Update(Produto produto)

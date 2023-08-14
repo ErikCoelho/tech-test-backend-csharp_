@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
 builder.Services.AddScoped<MongoDbContext>();
 
-builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseInMemoryDatabase("Database"));
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseInMemoryDatabase("Database"));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<SqlDbContext>(opt => opt.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IProdutoSqlRepository,ProdutoSqlRepository>();
 builder.Services.AddTransient<IProdutoNoSqlRepository, ProdutoNoSqlRepository>();

@@ -26,7 +26,7 @@ namespace Store.Tests.Application
         {
             var appService = new ProdutoAppService(_SqlRepository, _NoSqlRepository, _FileRepository);
 
-            var produtoViewModel = new ProdutoViewModel
+            var produtoViewModel = new EditProdutoViewModel
             {
                 Nome = "Shoes",
                 Preco = 200,
@@ -42,7 +42,7 @@ namespace Store.Tests.Application
         {
             var appService = new ProdutoAppService(_SqlRepository, _NoSqlRepository, _FileRepository);
 
-            var produtoViewModel = new ProdutoViewModel
+            var produtoViewModel = new EditProdutoViewModel
             {
                 Nome = "Shoes",
                 Preco = -20,

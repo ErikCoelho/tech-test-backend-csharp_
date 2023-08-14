@@ -31,7 +31,7 @@ namespace Store.Api.Application
             return _fileProdutoRepository.GetById(id);
         }
 
-        public ResultViewModel Create(ProdutoViewModel produto)
+        public ResultViewModel Create(EditProdutoViewModel produto)
         {
             try 
             { 
@@ -52,7 +52,7 @@ namespace Store.Api.Application
             }
         }
 
-        public ResultViewModel Update(Guid id, ProdutoViewModel produto)
+        public ResultViewModel Update(Guid id, EditProdutoViewModel produto)
         {
             var produto_ = _fileProdutoRepository.GetById(id);
 

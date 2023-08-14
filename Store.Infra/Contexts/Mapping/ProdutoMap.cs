@@ -34,14 +34,14 @@ namespace Store.Infra.Contexts.Mapping
 
             builder.Property(x => x.ValorTotal)
                 .IsRequired()
-                .HasColumnName("QuantidadeEstoque")
+                .HasColumnName("ValorTotal")
                 .HasColumnType("DECIMAL")
                 .HasMaxLength(60);
 
             builder.Property(x => x.DataCriacao)
                 .IsRequired()
                 .HasColumnName("DataCriacao")
-                .HasColumnType("DATE")
+                .HasColumnType("SMALLDATETIME")
                 .HasMaxLength(60);
 
         }

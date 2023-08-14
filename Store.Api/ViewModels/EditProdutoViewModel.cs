@@ -1,6 +1,6 @@
 ﻿namespace Store.Api.ViewModels
 {
-    public class ProdutoViewModel
+    public class EditProdutoViewModel
     {
         public string Nome { get; set; }
         public decimal Preco { get; set; }

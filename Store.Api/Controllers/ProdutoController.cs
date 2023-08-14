@@ -25,7 +25,7 @@ namespace Store.Api.Controllers
 
         [HttpPost("api/produtos")]
         public ResultViewModel Create(
-            [FromBody] ProdutoViewModel model,
+            [FromBody] EditProdutoViewModel model,
             [FromServices] ProdutoAppService service)
         {
             return service.Create(model);
@@ -34,11 +34,10 @@ namespace Store.Api.Controllers
         [HttpPut("api/produtos/{id:Guid}")]
         public ResultViewModel Edit(
             [FromRoute] Guid id,
-            [FromBody] ProdutoViewModel model,
+            [FromBody] EditProdutoViewModel model,
             [FromServices] ProdutoAppService service)
         {
             return service.Update(id, model);
-
         }
 
         [HttpDelete("api/produtos/{id:Guid}")]
