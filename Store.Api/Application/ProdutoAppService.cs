@@ -46,9 +46,9 @@ namespace Store.Api.Application
             {
                 return new ResultViewModel(false, ex.Message, string.Empty);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return new ResultViewModel(false, ex.Message, string.Empty);
+                return new ResultViewModel(false, "lq53 - Falha interna no servidor", string.Empty);
             }
         }
 
